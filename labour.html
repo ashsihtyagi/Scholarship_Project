@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;font-size:20px;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+font-size:20px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+font-size:20px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+font-size:20px;
+  background-color: #45a049;
+}
+
+.container {
+font-size:20px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+
+
+<div class="container">
+  <form action="../predict" method="GET">
+     <H1 id="scholarship">Scholarship Result </H1><br/><br/>
+  
+    <label for="education">Status of Formal Education</label>
+    <select name="education" id="education">
+        <option value="continuing">continuing</option>
+        <option value="finished">finished</option>
+        
+    </select>
+
+     <label for="age">Age</label>
+    <input type="text" id="age" name="age" >
+     
+    <label for="land">Has Land</label>
+    <select name="land" id="land">
+        <option value="yes">yes</option>
+        <option value="no">no</option>
+        
+    </select>
+    
+    <label for="yo">Tansport used</label>
+    <select name="yo" id="yo">
+        <option value="private">private</option>
+        <option value="public">public</option>
+        <option value="walking">walking</option>
+        
+    </select>
+
+     <label for="ge">Gender</label>
+     <select name="ge" id="ge">
+        <option value="male">male</option>
+        <option value="female">female</option>
+      </select> 
+
+      <label for="ts">Type of School</label>
+     <select name="ts" id="ts">
+        <option value="government">government</option>
+        <option value="private">private</option>
+      </select>
+
+      <label for="pds">Has PDS</label>
+     <select name="pds" id="pds">
+        <option value="yes">yes</option>
+        <option value="no">no</option>
+      </select>
+
+      <label for="adhar">Has ADHAR</label>
+     <select name="adhar" id="adhar">
+        <option value="yes">yes</option>
+        <option value="no">no</option>
+      </select>
+
+      <label for="gh">Head of Family</label>
+     <select name="gh" id="gh">
+        <option value="male">male</option>
+        <option value="female">female</option>
+      </select>
+     
+      <label for="hf">Are you head of Family</label>
+     <select name="hf" id="hf">
+        <option value="yes">yes</option>
+        <option value="no">no</option>
+      </select>
+
+      <label for="et">Employment Type</label>
+     <select name="et" id="et">
+        <option value="self-employed">self-employed</option>
+        <option value="salaried">salaried</option>
+      </select>
+
+  
+    <input  type="submit" value="Submit">
+  </form>
+</div>
+
+<script type="text/javascript">
+    
+    $('#submit').click(function(event){    
+    event.preventDefault();     
+                       var exist_response = $.ajax({type:"GET",url:"http://127.0.0.1:5000/predict",data:"education="+$('#education').val()
+                       +"&age="+$('#age').val()+"&land="+$('#land').val()+"&yo="+$('#yo').val()
+                       +"&ge="+$('#ge').val()+"&ts="+$('#ts').val()+"&pds="+$('#pds').val()+"&adhar="+$('#adhar').val()
+                       +"&gh="+$('#gh').val()+"&hf="+$('#hf').val()+"&et="+$('#et').val()
+,async: false}).responseText;
+  $('#scholarship').text("Scholarship Result. "+exist_response);
+    });
+    
+    
+    
+
+</script>
+
+
+</body>
+</html>
